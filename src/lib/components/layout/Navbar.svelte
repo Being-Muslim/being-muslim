@@ -28,11 +28,12 @@
 	<nav class="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-4 sm:px-6 lg:px-8">
 		<!-- Logo -->
 		<a href="/" class="flex items-center gap-2">
-			<div class="flex h-9 w-9 items-center justify-center rounded-full bg-accent-primary">
-				<svg viewBox="0 0 24 24" class="h-5 w-5 text-text-cream" fill="currentColor">
-					<path d="M12 2C10.9 4.5 8 6 8 9c0 2 1 3.5 2.5 4.5C9.5 14 9 15 9 16.5c0 2 1.5 3.5 3 5.5 1.5-2 3-3.5 3-5.5 0-1.5-.5-2.5-1.5-3C14.9 12.5 16 11 16 9c0-3-2.9-4.5-4-7z" />
-				</svg>
-			</div>
+			<img
+				src="https://www.beingmuslim.org/wp-content/uploads/2022/01/tree-logo-inverse.png"
+				alt="Being Muslim"
+				class="h-8 w-8 {scrolled ? 'invert' : ''}"
+				style="transition: filter 0.3s;"
+			/>
 			<span class={cn(
 				'font-display text-lg font-bold transition-colors',
 				scrolled ? 'text-text-primary' : 'text-text-cream'
