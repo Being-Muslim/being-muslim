@@ -59,6 +59,23 @@
 	const audienceIcons = { compass: Compass, sunrise: Sunrise, refresh: RefreshCw } as const;
 
 	let email = $state('');
+
+	let coursesHeaderRef: HTMLElement | undefined = $state();
+	let coursesInset = $state(40);
+
+	$effect(() => {
+		if (coursesHeaderRef) {
+			const sync = () => {
+				const rect = coursesHeaderRef!.getBoundingClientRect();
+				const pad = parseFloat(getComputedStyle(coursesHeaderRef!).paddingLeft);
+				coursesInset = rect.left + pad;
+			};
+			sync();
+			const ro = new ResizeObserver(sync);
+			ro.observe(coursesHeaderRef);
+			return () => ro.disconnect();
+		}
+	});
 </script>
 
 <svelte:head>
@@ -256,7 +273,7 @@
 <!-- 6. COURSES                     -->
 <!-- ============================== -->
 <section style="background: #f4f1eb; padding: 64px 0;">
-	<div class="mx-auto max-w-[1400px] px-6 lg:px-10">
+	<div bind:this={coursesHeaderRef} class="mx-auto max-w-[1400px] px-6 lg:px-10">
 		<!-- Header: title + description left, arrows right -->
 		<div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 32px;">
 			<div>
@@ -277,33 +294,33 @@
 			</div>
 		</div>
 
-		<!-- Horizontal scroll row -->
-		<div class="courses-scroll" style="display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px;">
+		<!-- Horizontal scroll row — bleeds to both screen edges -->
+		<div class="courses-scroll" style="display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; margin-left: -{coursesInset}px; margin-right: calc(-1 * (100vw - 100%) / 2); padding-left: {coursesInset}px; scroll-padding-left: {coursesInset}px; padding-right: 48px;">
 			{#each [
-				{ title: 'Foundations of Faith', instructor: 'Dr. Asad Tarsin', lessons: 24, duration: '6 hours', level: 'Beginner', img: 'https://images.unsplash.com/photo-1564769625905-50e93615e769?w=600&q=80&auto=format&fit=crop' },
-				{ title: 'Prayer Mastery', instructor: 'Imam Ahmad', lessons: 16, duration: '4 hours', level: 'Beginner', img: 'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=600&q=80&auto=format&fit=crop' },
-				{ title: 'Your Quran Journey', instructor: 'Ustadha Fatima', lessons: 32, duration: '10 hours', level: 'Beginner', img: 'https://images.unsplash.com/photo-1567443024551-f3e3cc2be870?w=600&q=80&auto=format&fit=crop' },
-				{ title: 'Understanding the Seerah', instructor: 'Dr. Omar Suleiman', lessons: 20, duration: '8 hours', level: 'Intermediate', img: 'https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=600&q=80&auto=format&fit=crop' },
-				{ title: 'Ramadan Preparation', instructor: 'Imam Hassan', lessons: 12, duration: '3 hours', level: 'Beginner', img: 'https://images.unsplash.com/photo-1574246604907-db69e30ddb97?w=600&q=80&auto=format&fit=crop' },
-				{ title: 'Islamic History & Civilisation', instructor: 'Dr. Amira Khan', lessons: 28, duration: '9 hours', level: 'Intermediate', img: 'https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=600&q=80&auto=format&fit=crop' }
-			] as course}
-				<a href="/c/courses" style="text-decoration: none; display: block; flex: 0 0 calc(25% - 15px); min-width: 220px; scroll-snap-align: start;" class="bm-title-underline-parent">
-					<div style="aspect-ratio: 1; background: #e2dcd2; border-radius: 14px; overflow: hidden; margin-bottom: 14px; position: relative;">
-						<img src={course.img} alt={course.title} style="width: 100%; height: 100%; object-fit: cover; display: block;" />
-						<div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
-							<div style="width: 56px; height: 56px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center;">
-								<Play class="h-6 w-6" style="color: #2a2018; margin-left: 2px;" />
-							</div>
+			{ title: 'Foundations of Faith', instructor: 'Dr. Asad Tarsin', lessons: 24, duration: '6 hours', level: 'Beginner', img: 'https://images.unsplash.com/photo-1564769625905-50e93615e769?w=600&q=80&auto=format&fit=crop' },
+			{ title: 'Prayer Mastery', instructor: 'Imam Ahmad', lessons: 16, duration: '4 hours', level: 'Beginner', img: 'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=600&q=80&auto=format&fit=crop' },
+			{ title: 'Your Quran Journey', instructor: 'Ustadha Fatima', lessons: 32, duration: '10 hours', level: 'Beginner', img: 'https://images.unsplash.com/photo-1567443024551-f3e3cc2be870?w=600&q=80&auto=format&fit=crop' },
+			{ title: 'Understanding the Seerah', instructor: 'Dr. Omar Suleiman', lessons: 20, duration: '8 hours', level: 'Intermediate', img: 'https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=600&q=80&auto=format&fit=crop' },
+			{ title: 'Ramadan Preparation', instructor: 'Imam Hassan', lessons: 12, duration: '3 hours', level: 'Beginner', img: 'https://images.unsplash.com/photo-1574246604907-db69e30ddb97?w=600&q=80&auto=format&fit=crop' },
+			{ title: 'Islamic History & Civilisation', instructor: 'Dr. Amira Khan', lessons: 28, duration: '9 hours', level: 'Intermediate', img: 'https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=600&q=80&auto=format&fit=crop' }
+		] as course}
+			<a href="/c/courses" style="text-decoration: none; display: block; flex: 0 0 280px; scroll-snap-align: start;" class="bm-title-underline-parent">
+				<div style="aspect-ratio: 1; background: #e2dcd2; border-radius: 14px; overflow: hidden; margin-bottom: 14px; position: relative;">
+					<img src={course.img} alt={course.title} style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+					<div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
+						<div style="width: 56px; height: 56px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center;">
+							<Play class="h-6 w-6" style="color: #2a2018; margin-left: 2px;" />
 						</div>
-						<span style="position: absolute; top: 12px; left: 12px; font-size: 10px; font-weight: 600; color: #2a2018; background: #fff; padding: 3px 10px; border-radius: 999px;">{course.level}</span>
 					</div>
-					<h3 class="bm-title-underline" style="font-size: 16px; color: #2a2018; margin: 0 0 8px; line-height: 1.3;">{course.title}</h3>
-					<div style="display: flex; align-items: center; gap: 12px;">
-						<span style="font-size: 12px; font-weight: 500; color: #2a2018;">{course.instructor}</span>
-						<span style="font-size: 12px; color: #a09888;">{course.lessons} lessons · {course.duration}</span>
-					</div>
-				</a>
-			{/each}
+					<span style="position: absolute; top: 12px; left: 12px; font-size: 10px; font-weight: 600; color: #2a2018; background: #fff; padding: 3px 10px; border-radius: 999px;">{course.level}</span>
+				</div>
+				<h3 class="bm-title-underline" style="font-size: 16px; color: #2a2018; margin: 0 0 8px; line-height: 1.3;">{course.title}</h3>
+				<div style="display: flex; align-items: center; gap: 12px;">
+					<span style="font-size: 12px; font-weight: 500; color: #2a2018;">{course.instructor}</span>
+					<span style="font-size: 12px; color: #a09888;">{course.lessons} lessons · {course.duration}</span>
+				</div>
+			</a>
+		{/each}
 		</div>
 	</div>
 </section>
@@ -507,5 +524,4 @@
 		</div>
 	</div>
 </section>
-
 
