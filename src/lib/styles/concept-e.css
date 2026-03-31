@@ -1,0 +1,83 @@
+/* Concept E: "Rawdah" (Garden) — Glassmorphic Ethereal */
+/* Serene, frosted glass panels, gradient mesh bg, indigo accent, organic curves */
+
+@import '@fontsource-variable/lora';
+@import '@fontsource-variable/rubik';
+
+.concept-e {
+	--color-bg-primary: #F0F4F8;
+	--color-bg-dark: #1A2332;
+	--color-text-primary: #1E293B;
+	--color-text-secondary: #64748B;
+	--color-text-cream: #F0F4F8;
+	--color-accent-primary: #6366F1;
+	--color-accent-hover: #5558E6;
+	--color-accent-gold: #F59E0B;
+	--color-accent-green: #34D399;
+	--color-surface: #FFFFFF;
+	--color-border: #E2E8F0;
+	--color-background: #F0F4F8;
+	--color-foreground: #1E293B;
+	--color-card: #FFFFFF;
+	--color-card-foreground: #1E293B;
+	--color-primary: #6366F1;
+	--color-primary-foreground: #FFFFFF;
+	--color-secondary: #F0F4F8;
+	--color-secondary-foreground: #1E293B;
+	--color-muted: #E2E8F0;
+	--color-muted-foreground: #64748B;
+	--color-accent: #F0F4F8;
+	--color-accent-foreground: #1E293B;
+	--color-destructive: #EF4444;
+	--color-destructive-foreground: #FFFFFF;
+	--color-input: #E2E8F0;
+	--color-ring: #6366F1;
+	--font-display: 'Lora Variable', 'Lora', Georgia, serif;
+	--font-sans: 'Rubik Variable', 'Rubik', system-ui, sans-serif;
+
+	background-color: var(--color-bg-primary);
+	color: var(--color-foreground);
+	font-family: var(--font-sans);
+}
+
+.concept-e h1,
+.concept-e h2,
+.concept-e h3,
+.concept-e h4,
+.concept-e h5,
+.concept-e h6 {
+	font-family: var(--font-display);
+}
+
+/* Frosted glass panel */
+.concept-e .glass-panel {
+	background: rgba(255, 255, 255, 0.65);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 24px;
+}
+
+/* Glass panel dark variant (for footer) */
+.concept-e .glass-panel-dark {
+	background: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 24px;
+}
+
+/* Ambient glow on interactive elements */
+.concept-e .glow:hover {
+	box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+}
+
+/* Gradient mesh background blobs */
+.concept-e .mesh-blob {
+	position: fixed;
+	border-radius: 50%;
+	filter: blur(80px);
+	opacity: 0.4;
+	pointer-events: none;
+	z-index: 0;
+}

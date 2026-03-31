@@ -1,0 +1,230 @@
+/* ============================================
+   Being Muslim — Concept C Design System
+   ============================================ */
+
+/* ---------- Design Tokens ---------- */
+:root {
+	--bm-bg: #faf9f5;
+	--bm-bg-alt: #f0ebe3;
+	--bm-dark: #2a2018;
+	--bm-muted: #8a7e70;
+	--bm-card: #e9e3da;
+	--bm-card-alt: #e2dcd2;
+	--bm-border: #d8d2c8;
+	--bm-accent: #c8b8a0;
+	--bm-font-serif: 'Source Serif 4', serif;
+	--bm-font-sans: 'DM Sans', sans-serif;
+}
+
+/* ---------- Global Typography ---------- */
+/* Apply DM Sans as the default body font for all concept B pages */
+/* The layout wraps content in a div we can target */
+
+.bm-root {
+	font-family: var(--bm-font-sans);
+	color: var(--bm-dark);
+	background: var(--bm-bg);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Disable smooth scrolling so page navigations start at top instantly */
+html {
+	scroll-behavior: auto !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--bm-font-serif);
+}
+/* Don't override Tailwind's font-display class (used in hero) */
+.font-display {
+	font-family: var(--font-display) !important;
+}
+
+p, a, li, label, input, textarea, select, button {
+	font-family: var(--bm-font-sans);
+}
+/* Don't override spans inside headings — they inherit the heading font */
+
+/* ---------- Buttons (shared base) ---------- */
+.bm-btn-white,
+.bm-btn-dark,
+.bm-btn-outline,
+.bm-btn-glass {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-family: var(--bm-font-sans);
+	font-size: 14px;
+	font-weight: 500;
+	border-radius: 999px;
+	padding: 12px 28px;
+	text-decoration: none;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+/* White pill */
+.bm-btn-white {
+	background: #fff;
+	color: var(--bm-dark);
+}
+.bm-btn-white:hover {
+	background: rgba(255, 255, 255, 0.88) !important;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark pill */
+.bm-btn-dark {
+	background: var(--bm-dark);
+	color: #fff;
+}
+.bm-btn-dark:hover {
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Outline pill */
+.bm-btn-outline {
+	background: transparent;
+	color: var(--bm-dark);
+	border: 1px solid var(--bm-dark);
+}
+.bm-btn-outline:hover {
+	background: rgba(0, 0, 0, 0.05);
+}
+
+/* Glass pill */
+.bm-btn-glass {
+	background: rgba(255, 255, 255, 0.1);
+	color: #fff;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+}
+.bm-btn-glass:hover {
+	background: rgba(255, 255, 255, 0.2);
+	border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ---------- Typography ---------- */
+.bm-heading {
+	font-family: var(--bm-font-serif);
+	font-weight: 400;
+	color: var(--bm-dark);
+}
+
+.bm-body {
+	font-family: var(--bm-font-sans);
+	color: var(--bm-muted);
+	line-height: 1.6;
+}
+
+.bm-label {
+	font-family: var(--bm-font-sans);
+	font-size: 12px;
+	font-weight: 500;
+	color: var(--bm-dark);
+}
+
+/* ---------- Navbar pill ---------- */
+.bm-navbar-pill {
+	transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+/* ---------- Card hover effects ---------- */
+.bm-card-hover {
+	transition: background 0.2s;
+}
+.bm-card-hover:hover {
+	background: #e6e3da !important;
+}
+
+.bm-img-zoom img,
+.bm-img-zoom > div {
+	transition: transform 500ms;
+}
+.bm-img-zoom:hover img,
+.bm-img-zoom:hover > div {
+	transform: scale(1.05);
+}
+
+.bm-title-underline {
+	text-decoration: none;
+	transition: text-decoration-color 0.2s;
+	text-underline-offset: 3px;
+}
+.bm-title-underline-parent:hover .bm-title-underline {
+	text-decoration: underline;
+	text-decoration-color: var(--bm-dark);
+}
+
+/* ---------- View all link ---------- */
+.bm-view-all:hover {
+	text-decoration: underline !important;
+	text-underline-offset: 3px;
+}
+
+/* ---------- Footer links ---------- */
+.bm-footer-link {
+	font-family: var(--bm-font-sans);
+	font-size: 13px;
+	color: rgba(255, 255, 255, 0.55);
+	text-decoration: none;
+	display: block;
+	padding: 4px 0;
+	transition: color 0.2s;
+}
+.bm-footer-link:hover {
+	color: #fff !important;
+	text-decoration: underline !important;
+	text-underline-offset: 3px;
+}
+
+/* ---------- Newsletter button ---------- */
+.bm-newsletter-btn {
+	transition: all 0.2s;
+}
+.bm-newsletter-btn:hover {
+	background: rgba(255, 255, 255, 0.85) !important;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------- Social icons ---------- */
+.bm-social-icon {
+	width: 36px;
+	height: 36px;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.08);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background 0.2s;
+}
+.bm-social-icon:hover {
+	background: rgba(255, 255, 255, 0.15);
+}
+
+/* ---------- Section spacing ---------- */
+.bm-section {
+	padding: 64px 0;
+}
+
+.bm-container {
+	max-width: 1400px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 24px;
+	padding-right: 24px;
+}
+@media (min-width: 1024px) {
+	.bm-container {
+		padding-left: 40px;
+		padding-right: 40px;
+	}
+}
+
+/* ---------- Hide scrollbar for horizontal scroll ---------- */
+.courses-scroll::-webkit-scrollbar {
+	display: none;
+}

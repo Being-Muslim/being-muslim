@@ -1,0 +1,58 @@
+/* Concept D: "Miraj" (Ascension) — Split-Screen Cinematic */
+/* Dramatic, dark mode, extreme typography, bronze accent, 60/40 splits */
+
+@import '@fontsource-variable/fraunces';
+@import '@fontsource-variable/outfit';
+
+.concept-d {
+	--color-bg-primary: #0C0C0C;
+	--color-bg-dark: #000000;
+	--color-text-primary: #F5F0EB;
+	--color-text-secondary: #9A9590;
+	--color-text-cream: #F5F0EB;
+	--color-accent-primary: #D4A574;
+	--color-accent-hover: #C29460;
+	--color-accent-gold: #D4A574;
+	--color-accent-green: #7FB069;
+	--color-surface: #171717;
+	--color-border: #2A2A2A;
+	--color-background: #0C0C0C;
+	--color-foreground: #F5F0EB;
+	--color-card: #171717;
+	--color-card-foreground: #F5F0EB;
+	--color-primary: #D4A574;
+	--color-primary-foreground: #0C0C0C;
+	--color-secondary: #171717;
+	--color-secondary-foreground: #F5F0EB;
+	--color-muted: #171717;
+	--color-muted-foreground: #9A9590;
+	--color-accent: #171717;
+	--color-accent-foreground: #F5F0EB;
+	--color-destructive: #ef4444;
+	--color-destructive-foreground: #F5F0EB;
+	--color-input: #2A2A2A;
+	--color-ring: #D4A574;
+	--font-display: 'Fraunces Variable', 'Fraunces', Georgia, serif;
+	--font-sans: 'Outfit Variable', 'Outfit', system-ui, sans-serif;
+
+	background-color: var(--color-bg-primary);
+	color: var(--color-foreground);
+	font-family: var(--font-sans);
+}
+
+.concept-d h1,
+.concept-d h2,
+.concept-d h3,
+.concept-d h4,
+.concept-d h5,
+.concept-d h6 {
+	font-family: var(--font-display);
+}
+
+/* Bronze horizontal rule */
+.concept-d .bronze-rule {
+	border: none;
+	height: 1px;
+	background-color: #D4A574;
+	opacity: 0.3;
+}
