@@ -10,13 +10,41 @@ const config = {
 			precompress: false,
 			strict: false
 		}),
-		paths: {
-			base: '/being-muslim'
-		},
 		prerender: {
 			handleHttpError: 'warn',
 			handleMissingId: 'warn',
-			handleUnseenRoutes: 'warn'
+			handleUnseenRoutes: 'ignore',
+			crawl: true,
+			entries: [
+				'/',
+				'/a',
+				'/b',
+				'/b/learn',
+				'/b/shop',
+				'/b/about',
+				'/b/convert',
+				'/b/contact',
+				'/b/support',
+				'/b/articles',
+				'/b/courses',
+				'/b/guides',
+				'/b/videos',
+				'/b/community',
+				'/b/cart',
+				'/c',
+				'/c/learn',
+				'/c/shop',
+				'/c/about',
+				'/c/convert',
+				'/c/contact',
+				'/c/support',
+				'/c/articles',
+				'/c/courses',
+				'/c/guides',
+				'/c/videos',
+				'/c/community',
+				'/c/cart'
+			]
 		}
 	}
 };

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 	import { ArrowRight, BookOpen } from 'lucide-svelte';
 
 	const products = [
@@ -8,7 +7,7 @@
 			price: '$14.95',
 			badge: 'Bestseller',
 			img: 'https://www.beingmuslim.org/wp-content/uploads/2021/08/being-muslim-book.jpeg',
-			href: `${base}/b/shop/book`,
+			href: `$/b/shop/book`,
 			description: 'The essential guide for new Muslims by Dr. Asad Tarsin — clear, warm, and beautifully designed.'
 		},
 		{
@@ -16,7 +15,7 @@
 			price: '$85.00',
 			badge: 'Most Popular',
 			img: 'https://www.beingmuslim.org/wp-content/uploads/2021/08/the-boxed-set-900x1200.jpeg',
-			href: `${base}/b/shop/boxed-set`,
+			href: `$/b/shop/boxed-set`,
 			description: 'Everything you need in one beautiful package — the book, prayer cards, and supplementary materials.'
 		},
 		{
@@ -24,7 +23,7 @@
 			price: '$37.50',
 			badge: '',
 			img: 'https://www.beingmuslim.org/wp-content/uploads/2021/08/the-prayer-card-900x610.jpeg',
-			href: `${base}/b/shop/prayer-cards`,
+			href: `$/b/shop/prayer-cards`,
 			description: 'Beautifully illustrated, step-by-step prayer cards you can keep beside your prayer mat.'
 		},
 		{
@@ -32,7 +31,7 @@
 			price: '$9.00',
 			badge: '',
 			img: 'https://www.beingmuslim.org/wp-content/uploads/2021/08/BM-E-Book-900x1200.png',
-			href: `${base}/b/shop/ebook`,
+			href: `$/b/shop/ebook`,
 			description: 'The complete Being Muslim guide in digital format — read on any device, anywhere.'
 		}
 	];
@@ -107,7 +106,7 @@
 				<p style="font-family: 'DM Sans', sans-serif; font-size: 15px; color: #8a7e70; line-height: 1.6; margin: 0 0 28px;">
 					Many new Muslims cannot afford the resources they need. Your sponsorship puts a complete Being Muslim boxed set in their hands — a gift that transforms lives.
 				</p>
-				<a href="{base}/b/support" class="bm-btn-dark" style="padding: 12px 28px;">
+				<a href="/b/support" class="bm-btn-dark" style="padding: 12px 28px;">
 					Support the Mission <ArrowRight class="h-3.5 w-3.5" />
 				</a>
 			</div>

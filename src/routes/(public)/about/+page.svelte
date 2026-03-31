@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 	import { Section } from '$lib/components/layout/index.js';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Badge } from '$lib/components/ui/badge/index.js';
@@ -412,7 +411,7 @@
 					Sponsor a boxed set for a new Muslim, fund education programs, or become a monthly
 					supporter of our mission.
 				</p>
-				<a href="{base}/give">
+				<a href="/give">
 					<Button class="mt-6 bg-accent-primary text-text-cream hover:bg-accent-hover">
 						{#snippet children()}
 							Give Now

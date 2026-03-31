@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Separator } from '$lib/components/ui/separator/index.js';
@@ -172,9 +171,9 @@
 				/>
 				<span class="text-sm text-text-secondary">
 					I agree to the
-					<a href="{base}/terms" class="font-medium text-accent-primary hover:underline">Terms of Service</a>
+					<a href="/terms" class="font-medium text-accent-primary hover:underline">Terms of Service</a>
 					and
-					<a href="{base}/privacy" class="font-medium text-accent-primary hover:underline">Privacy Policy</a>
+					<a href="/privacy" class="font-medium text-accent-primary hover:underline">Privacy Policy</a>
 				</span>
 			</label>
 
@@ -220,7 +219,7 @@
 		<!-- Login Link -->
 		<p class="mt-6 text-center text-sm text-text-secondary">
 			Already have an account?
-			<a href="{base}/login" class="font-medium text-accent-primary hover:underline">Sign in</a>
+			<a href="/login" class="font-medium text-accent-primary hover:underline">Sign in</a>
 		</p>
 	</div>
 </div>

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 	import { Section } from '$lib/components/layout/index.js';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Badge } from '$lib/components/ui/badge/index.js';
@@ -166,7 +165,7 @@
 			<h2 class="font-display text-3xl font-bold sm:text-4xl">Latest Resources</h2>
 			<p class="mt-2 text-text-secondary">Fresh insights to guide your journey</p>
 		</div>
-		<a href="{base}/articles" class="hidden items-center gap-1 text-sm font-medium text-accent-primary hover:underline sm:inline-flex">
+		<a href="/articles" class="hidden items-center gap-1 text-sm font-medium text-accent-primary hover:underline sm:inline-flex">
 			View all resources
 			<ArrowRight class="h-4 w-4" />
 		</a>
@@ -174,7 +173,7 @@
 
 	<div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 		{#each featuredArticles as article}
-			<a href="{base}/articles/{article.slug}" class="group">
+			<a href="/articles/{article.slug}" class="group">
 				<div class="overflow-hidden rounded-xl border border-border bg-surface transition-all hover:shadow-lg">
 					<div class="aspect-[16/10] bg-gradient-to-br from-accent-primary/20 to-accent-gold/20">
 						<!-- Placeholder for article image -->
@@ -200,7 +199,7 @@
 	</div>
 
 	<div class="mt-6 text-center sm:hidden">
-		<a href="{base}/articles" class="inline-flex items-center gap-1 text-sm font-medium text-accent-primary">
+		<a href="/articles" class="inline-flex items-center gap-1 text-sm font-medium text-accent-primary">
 			View all resources
 			<ArrowRight class="h-4 w-4" />
 		</a>
@@ -226,7 +225,7 @@
 
 			<div class="mt-8 space-y-4">
 				{#each featuredProducts as product}
-					<a href="{base}/shop/{product.handle}" class="group flex gap-4 rounded-xl border border-border bg-surface p-4 transition-all hover:border-accent-primary/30 hover:shadow-md">
+					<a href="/shop/{product.handle}" class="group flex gap-4 rounded-xl border border-border bg-surface p-4 transition-all hover:border-accent-primary/30 hover:shadow-md">
 						<div class="flex h-20 w-20 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-accent-primary/10 to-accent-gold/10">
 							<BookOpen class="h-8 w-8 text-accent-primary/60" />
 						</div>
@@ -292,7 +291,7 @@
 
 	<div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 		{#each featuredCourses as course}
-			<a href="{base}/courses/{course.slug}" class="group">
+			<a href="/courses/{course.slug}" class="group">
 				<div class="flex h-full flex-col overflow-hidden rounded-xl border border-border bg-surface transition-all hover:shadow-lg">
 					<div class="aspect-[16/9] bg-gradient-to-br from-accent-green/20 to-accent-primary/20">
 						<div class="flex h-full items-center justify-center">
@@ -473,7 +472,7 @@
 	</div>
 
 	<div class="mt-8 text-center">
-		<a href="{base}/give" class="inline-flex items-center gap-1 text-sm font-medium text-accent-primary hover:underline">
+		<a href="/give" class="inline-flex items-center gap-1 text-sm font-medium text-accent-primary hover:underline">
 			Learn more about giving
 			<ArrowRight class="h-4 w-4" />
 		</a>

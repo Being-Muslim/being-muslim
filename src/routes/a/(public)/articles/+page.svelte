@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 	import { Section } from '$lib/components/layout/index.js';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Badge } from '$lib/components/ui/badge/index.js';
@@ -123,7 +122,7 @@
 	{:else}
 		<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 			{#each filteredArticles as article}
-				<a href="{base}/articles/{article.slug}" class="group">
+				<a href="/articles/{article.slug}" class="group">
 					<article class="flex h-full flex-col overflow-hidden rounded-xl border border-border bg-surface transition-all duration-200 hover:border-accent-primary/30 hover:shadow-lg">
 						<!-- Image Placeholder -->
 						<div class="aspect-[16/10] bg-gradient-to-br from-accent-primary/20 to-accent-gold/20">
