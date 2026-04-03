@@ -110,11 +110,11 @@
 <svelte:window onscroll={handleScroll} />
 
 <header
-	class="fixed top-0 left-0 right-0 z-50 border-b {activeMenu || mobileOpen
+	class="fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 {activeMenu || mobileOpen
 		? 'bg-white/95 backdrop-blur-md shadow-sm border-border'
 		: scrolled
-			? 'bg-white/95 backdrop-blur-md shadow-sm border-border transition-all duration-300'
-			: 'bg-transparent border-transparent transition-all duration-300'}"
+			? 'bg-white/95 backdrop-blur-md shadow-sm border-border'
+			: 'bg-transparent border-transparent'}"
 >
 	<nav class="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between px-6 lg:px-10">
 		<!-- Logo -->
