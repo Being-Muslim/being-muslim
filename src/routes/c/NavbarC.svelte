@@ -21,10 +21,11 @@
 			align-items: center;
 			justify-content: space-between;
 			padding: 10px 12px 10px 20px;
-			border-radius: 999px;
+			border-radius: {mobileOpen ? '24px 24px 0 0' : '999px'};
 			backdrop-filter: blur(20px);
 			-webkit-backdrop-filter: blur(20px);
 			border: 1px solid rgba(255,255,255,0.15);
+			{mobileOpen ? 'border-bottom: none;' : ''}
 			background: rgba(255,255,255,0.08);
 			box-shadow: none;
 			transition: all 0.3s;
@@ -97,12 +98,13 @@
 		class:open={mobileOpen}
 		style="
 			max-width: 1100px;
-			margin: 6px auto 0;
-			border-radius: 20px;
+			margin: 0 auto;
+			border-radius: 0 0 24px 24px;
 			backdrop-filter: blur(20px);
 			-webkit-backdrop-filter: blur(20px);
 			background: rgba(255,255,255,0.12);
 			border: 1px solid rgba(255,255,255,0.15);
+			border-top: none;
 		"
 	>
 		<div style="padding: 16px 20px;">
