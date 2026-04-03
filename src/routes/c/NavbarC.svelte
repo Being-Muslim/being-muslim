@@ -21,10 +21,11 @@
 			align-items: center;
 			justify-content: space-between;
 			padding: 10px 12px 10px 20px;
-			border-radius: 999px;
+			border-radius: {mobileOpen ? '20px 20px 0 0' : '999px'};
 			backdrop-filter: blur(20px);
 			-webkit-backdrop-filter: blur(20px);
 			border: 1px solid rgba(255,255,255,0.15);
+			{mobileOpen ? 'border-bottom: none;' : ''}
 			background: rgba(255,255,255,0.08);
 			box-shadow: none;
 			transition: all 0.3s;
@@ -95,14 +96,14 @@
 	{#if mobileOpen}
 		<div style="
 			max-width: 1100px;
-			margin: 8px auto 0;
+			margin: 0 auto;
 			padding: 16px 20px;
-			border-radius: 20px;
+			border-radius: 0 0 20px 20px;
 			backdrop-filter: blur(20px);
 			-webkit-backdrop-filter: blur(20px);
-			background: rgba(255,255,255,0.95);
-			border: 1px solid rgba(0,0,0,0.06);
-			box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+			background: rgba(255,255,255,0.12);
+			border: 1px solid rgba(255,255,255,0.15);
+			border-top: none;
 		">
 			{#each [
 				{ label: 'Home', href: '/c' },
@@ -111,9 +112,9 @@
 				{ label: 'Shop', href: '/c/shop' },
 				{ label: 'Support', href: '/c/support' }
 			] as link}
-				<a href={link.href} style="display: block; padding: 10px 0; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: #2a2018; text-decoration: none;" onclick={() => (mobileOpen = false)}>{link.label}</a>
+				<a href={link.href} style="display: block; padding: 10px 0; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: #fff; text-decoration: none;" onclick={() => (mobileOpen = false)}>{link.label}</a>
 			{/each}
-			<a href="/c/contact" style="display: block; margin-top: 8px; text-align: center; background: #2a2018; color: #fff; padding: 10px; border-radius: 999px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; text-decoration: none;">Contact</a>
+			<a href="/c/contact" style="display: block; margin-top: 8px; text-align: center; background: rgba(255,255,255,0.15); color: #fff; padding: 10px; border-radius: 999px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; text-decoration: none; border: 1px solid rgba(255,255,255,0.25);">Contact</a>
 		</div>
 	{/if}
 </header>
