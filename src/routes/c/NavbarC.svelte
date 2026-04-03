@@ -21,11 +21,10 @@
 			align-items: center;
 			justify-content: space-between;
 			padding: 10px 12px 10px 20px;
-			border-radius: {mobileOpen ? '20px 20px 0 0' : '999px'};
+			border-radius: 999px;
 			backdrop-filter: blur(20px);
 			-webkit-backdrop-filter: blur(20px);
 			border: 1px solid rgba(255,255,255,0.15);
-			{mobileOpen ? 'border-bottom: none;' : ''}
 			background: rgba(255,255,255,0.08);
 			box-shadow: none;
 			transition: all 0.3s;
@@ -93,18 +92,20 @@
 		</button>
 	</nav>
 
-	{#if mobileOpen}
-		<div style="
+	<div
+		class="mobile-dropdown md:hidden"
+		class:open={mobileOpen}
+		style="
 			max-width: 1100px;
-			margin: 0 auto;
-			padding: 16px 20px;
-			border-radius: 0 0 20px 20px;
+			margin: 6px auto 0;
+			border-radius: 20px;
 			backdrop-filter: blur(20px);
 			-webkit-backdrop-filter: blur(20px);
 			background: rgba(255,255,255,0.12);
 			border: 1px solid rgba(255,255,255,0.15);
-			border-top: none;
-		">
+		"
+	>
+		<div style="padding: 16px 20px;">
 			{#each [
 				{ label: 'Home', href: '/c' },
 				{ label: 'Learn', href: '/c/learn' },
@@ -116,5 +117,20 @@
 			{/each}
 			<a href="/c/contact" style="display: block; margin-top: 8px; text-align: center; background: rgba(255,255,255,0.15); color: #fff; padding: 10px; border-radius: 999px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; text-decoration: none; border: 1px solid rgba(255,255,255,0.25);">Contact</a>
 		</div>
-	{/if}
+	</div>
 </header>
+
+<style>
+	.mobile-dropdown {
+		overflow: hidden;
+		max-height: 0;
+		opacity: 0;
+		transition: max-height 0.35s ease, opacity 0.25s ease;
+		pointer-events: none;
+	}
+	.mobile-dropdown.open {
+		max-height: 350px;
+		opacity: 1;
+		pointer-events: auto;
+	}
+</style>
