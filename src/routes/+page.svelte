@@ -25,30 +25,6 @@
 			primary: '#2a2018',
 			fonts: 'Source Serif 4 + DM Sans',
 			description: 'Modern, airy, and explorable. Floating glass-effect pill navbar, bento grid layouts, horizontal scroll course carousels, alternating warm backgrounds, and generous whitespace with the same warm earth palette.'
-		},
-		{
-			id: 'D',
-			subtitle: 'Nūr — Guided Journey',
-			href: '/d',
-			primary: '#7A9E7E',
-			fonts: 'Newsreader + Albert Sans',
-			description: 'Calm, guided, and personal — inspired by Headspace and wellness UX. Soft sage-green palette, journey selector cards, chapter-based learning, generous whitespace, and a patient-teacher aesthetic.'
-		},
-		{
-			id: 'E',
-			subtitle: 'Kitāb — Premium Editorial',
-			href: '/e',
-			primary: '#C1604E',
-			fonts: 'Fraunces + Outfit',
-			description: 'Literary, premium, and cinematic — inspired by Masterclass and Monocle. Dark hero with floating book cover, terracotta accents, Volume/Chapter structure, pull quotes, and editorial typography.'
-		},
-		{
-			id: 'G',
-			subtitle: 'Rawḍah — Organic & Immersive',
-			href: '/g',
-			primary: '#1A5653',
-			fonts: 'Cormorant Garamond + Manrope',
-			description: 'Organic, meditative, and nature-inspired. Flowing SVG wave dividers between sections, deep teal + rose palette, 20px rounded cards, garden metaphors, and scroll-storytelling layout.'
 		}
 	];
 </script>
@@ -62,7 +38,7 @@
 		<div class="text-center">
 			<h1 class="font-display text-4xl font-bold sm:text-5xl">Design Concepts</h1>
 			<p class="mx-auto mt-4 max-w-2xl text-lg text-text-secondary">
-				Six design approaches for BeingMuslim.org. A is the base, B and C explore layout patterns, and D, E, G introduce new visual directions inspired by wellness, editorial, and organic design trends.
+				Three design approaches for BeingMuslim.org. A is the base design — B and C explore different visual identities and layout patterns.
 			</p>
 		</div>
 
