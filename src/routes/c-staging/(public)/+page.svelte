@@ -113,14 +113,10 @@
 			</div>
 		</div>
 	</div>
-</section>
 
-<!-- ============================== -->
-<!-- LEARN / CONVERT / BUY          -->
-<!-- ============================== -->
-<section style="background: #faf9f5; padding: 24px 0;">
-	<div class="mx-auto max-w-[1400px] px-6 lg:px-10">
-		<div class="bm-grid-explore" style="background: #e3dacc; border-radius: 16px; padding: 28px 20px;">
+	<!-- Explore your path — inside hero -->
+	<div class="relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-10 pb-10">
+		<div class="bm-grid-explore" style="background: rgba(227,218,204,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 16px; padding: 28px 20px;">
 			<!-- Left: title + description + CTA -->
 			<div style="display: flex; flex-direction: column; justify-content: space-between; padding-right: 24px;">
 				<div>
@@ -137,7 +133,7 @@
 			</div>
 
 			<!-- Card: Learn -->
-			<a href="/c-staging/learn" class="bm-card-hover" style="background: #f0eee6; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none;">
+			<a href="/c-staging/learn" class="bm-card-hover" style="background: rgba(240,238,230,0.9); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none;">
 				<div>
 					<p style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: #6a6258; margin: 0 0 8px; letter-spacing: 0.02em;">Learn</p>
 					<p style="font-family: 'Source Serif 4', serif; font-size: 24px; font-weight: 400; color: #2a2018; margin: 0; line-height: 1.2;">Explore articles, guides, and resources on Islamic faith and practice</p>
@@ -148,7 +144,7 @@
 			</a>
 
 			<!-- Card: Convert -->
-			<a href="/c-staging/convert" class="bm-card-hover" style="background: #f0eee6; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none;">
+			<a href="/c-staging/convert" class="bm-card-hover" style="background: rgba(240,238,230,0.9); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none;">
 				<div>
 					<p style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: #6a6258; margin: 0 0 8px; letter-spacing: 0.02em;">Convert</p>
 					<p style="font-family: 'Source Serif 4', serif; font-size: 24px; font-weight: 400; color: #2a2018; margin: 0; line-height: 1.2;">Take the next step on your journey with guidance and support</p>
@@ -159,7 +155,7 @@
 			</a>
 
 			<!-- Card: Buy -->
-			<a href="/c-staging/shop" class="bm-card-hover" style="background: #f0eee6; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none;">
+			<a href="/c-staging/shop" class="bm-card-hover" style="background: rgba(240,238,230,0.9); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none;">
 				<div>
 					<p style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: #6a6258; margin: 0 0 8px; letter-spacing: 0.02em;">Buy</p>
 					<p style="font-family: 'Source Serif 4', serif; font-size: 24px; font-weight: 400; color: #2a2018; margin: 0; line-height: 1.2;">Books, prayer cards, and resources for your journey</p>
