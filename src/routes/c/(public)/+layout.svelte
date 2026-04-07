@@ -4,6 +4,7 @@
 	import '../styles.css';
 	import NavbarC from '../NavbarC.svelte';
 	import FooterC from '../FooterC.svelte';
+	import FontSelector from '$lib/components/common/FontSelector.svelte';
 	let { children }: { children: Snippet } = $props();
 
 	beforeNavigate(() => {
@@ -29,4 +30,5 @@
 	<NavbarC />
 	<main>{@render children()}</main>
 	<FooterC />
+	<FontSelector />
 </div>

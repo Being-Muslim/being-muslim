@@ -17,7 +17,6 @@ const config = {
 			crawl: true,
 			entries: [
 				'/',
-				'/a',
 				'/b',
 				'/b/learn',
 				'/b/shop',
@@ -44,24 +43,15 @@ const config = {
 				'/c/videos',
 				'/c/community',
 				'/c/cart',
-				'/d',
-				'/e',
-				'/g',
-				'/i',
-				'/j',
+				'/b-staging',
+				'/c-staging',
 				'/admin',
 				'/admin/articles',
 				'/admin/articles/new',
 				'/admin/courses',
 				'/admin/community',
 				'/admin/media',
-				'/admin/settings',
-				'/k',
-				'/l',
-				'/m',
-				'/n',
-				'/b-staging',
-				'/c-staging'
+				'/admin/settings'
 			]
 		}
 	}
