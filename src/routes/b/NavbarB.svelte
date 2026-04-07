@@ -72,7 +72,7 @@
 				}
 			]
 		},
-		Shop: {
+		Products: {
 			columns: [
 				{
 					heading: 'Products',
@@ -111,10 +111,11 @@
 
 <header
 	class="fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 {activeMenu || mobileOpen
-		? 'bg-white/95 backdrop-blur-md shadow-sm border-border'
+		? 'backdrop-blur-md shadow-sm border-border'
 		: scrolled
-			? 'bg-white/95 backdrop-blur-md shadow-sm border-border'
+			? 'backdrop-blur-md shadow-sm border-border'
 			: 'bg-transparent border-transparent'}"
+	style="{activeMenu || mobileOpen || scrolled ? 'background: rgba(250,245,235,0.97);' : ''}"
 >
 	<nav class="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between px-6 lg:px-10">
 		<!-- Logo -->
@@ -136,7 +137,7 @@
 				{ label: 'Home', href: '/b' },
 				{ label: 'Learn', href: '/b/learn' },
 				{ label: 'Convert', href: '/b/convert' },
-				{ label: 'Shop', href: '/b/shop' },
+				{ label: 'Products', href: '/b/shop' },
 				{ label: 'Support', href: '/b/support' }
 			] as link}
 				<div
@@ -231,7 +232,7 @@
 				{ label: 'Home', href: '/b' },
 				{ label: 'Learn', href: '/b/learn' },
 				{ label: 'Convert', href: '/b/convert' },
-				{ label: 'Shop', href: '/b/shop' },
+				{ label: 'Products', href: '/b/shop' },
 				{ label: 'Support', href: '/b/support' }
 			] as link}
 				<a href={link.href} class="block py-2.5 text-text-primary font-medium" onclick={() => (mobileOpen = false)}>{link.label}</a>
@@ -252,7 +253,7 @@
 	.mobile-menu {
 		max-height: 0;
 		overflow: hidden;
-		background: white;
+		background: rgba(250,245,235,0.97);
 		transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 	.mobile-menu.open {

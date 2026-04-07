@@ -41,7 +41,7 @@
 
 			<!-- Shop -->
 			<div>
-				<h4 style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; color: #fff; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px;">Products</h4>
+				<h4 style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; color: #fff; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px;">Shop</h4>
 				{#each [
 					{ label: 'The Book', href: '/c-staging/shop' },
 					{ label: 'Boxed Set', href: '/c-staging/shop' },
