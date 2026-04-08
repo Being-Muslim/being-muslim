@@ -202,7 +202,7 @@ p, a, li, label, input, textarea, select, button {
 
 /* ---------- Responsive grids ---------- */
 
-/* Explore path: stacked → description on top, 3 cards below */
+/* Explore path: stacked → description + 3 cards in one row */
 .bm-grid-explore {
 	display: grid;
 	grid-template-columns: 1fr;
@@ -211,8 +211,13 @@ p, a, li, label, input, textarea, select, button {
 }
 @media (min-width: 768px) {
 	.bm-grid-explore {
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: 1.2fr 1fr 1fr 1fr;
 		padding: 48px !important;
+	}
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+	.bm-grid-explore {
+		grid-template-columns: 1fr 1fr;
 	}
 	.bm-grid-explore > :first-child {
 		grid-column: 1 / -1;
