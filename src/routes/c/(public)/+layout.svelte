@@ -14,6 +14,7 @@
 
 	afterNavigate(() => {
 		window.scrollTo(0, 0);
+		// Restore after a tick
 		requestAnimationFrame(() => {
 			document.documentElement.style.scrollBehavior = '';
 		});
@@ -23,10 +24,10 @@
 <svelte:head>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-	<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Inter:wght@300..700&display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet" />
 </svelte:head>
 
-<div class="bmc-root">
+<div class="bm-root">
 	<NavbarC />
 	<main>{@render children()}</main>
 	<FooterC />

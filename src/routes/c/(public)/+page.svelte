@@ -1,129 +1,207 @@
 <script lang="ts">
-	import { ArrowRight, ChevronDown, BookOpen } from 'lucide-svelte';
+	import { onMount } from 'svelte';
+	import { Section } from '$lib/components/layout/index.js';
+	import { Button } from '$lib/components/ui/button/index.js';
+	import { Badge } from '$lib/components/ui/badge/index.js';
+	import * as Card from '$lib/components/ui/card/index.js';
+	import { Progress } from '$lib/components/ui/progress/index.js';
+	import {
+		stats,
+		audiencePaths,
+		articles,
+		products,
+		courses,
+		testimonials,
+		donationStats,
+		sponsorshipTiers
+	} from '$lib/data/mock.js';
+	import {
+		ArrowRight,
+		BookOpen,
+		Compass,
+		RefreshCw,
+		Sunrise,
+		Star,
+		Play,
+		Users,
+		MessageCircle,
+		Heart,
+		ChevronLeft,
+		ChevronRight,
+		Mail,
+		Fingerprint,
+		Wrench,
+		ShieldCheck,
+		Diamond,
+		ChevronDown
+	} from 'lucide-svelte';
 
+	const featuredArticles = articles.filter((a) => a.featured).slice(0, 3);
+	const featuredProducts = products.slice(0, 2);
+	const featuredCourses = courses.slice(0, 3);
+
+	let testimonialIndex = $state(0);
 	let openFaq = $state<number | null>(null);
 
 	function toggleFaq(index: number) {
 		openFaq = openFaq === index ? null : index;
 	}
+
+	function nextTestimonial() {
+		testimonialIndex = (testimonialIndex + 1) % testimonials.length;
+	}
+	function prevTestimonial() {
+		testimonialIndex = (testimonialIndex - 1 + testimonials.length) % testimonials.length;
+	}
+
+	const audienceIcons = { compass: Compass, sunrise: Sunrise, refresh: RefreshCw } as const;
+
+	let email = $state('');
+
+	// --- Intersection Observer for scroll reveal ---
+	onMount(() => {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('visible');
+					}
+				});
+			},
+			{ threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
+		);
+		document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach((el) => {
+			observer.observe(el);
+		});
+		return () => observer.disconnect();
+	});
 </script>
 
 <svelte:head>
-	<title>Being Muslim — Navigating the Path to Islam</title>
+	<title>Being Muslim — Your Guide to a Meaningful Islamic Journey</title>
 	<meta
 		name="description"
-		content="Empowering new and beginner Muslims with comprehensive education and support to navigate your journey and deepen your understanding and connection with faith."
+		content="Empowering converts and beginners on their Islamic journey through education, community, and support."
 	/>
 </svelte:head>
 
 <!-- ============================== -->
 <!-- 1. HERO SECTION                -->
 <!-- ============================== -->
-<section class="relative flex min-h-screen flex-col justify-center overflow-hidden" style="background: #0D0D0D;">
-	<!-- Background Image with dark overlay -->
+<section class="relative flex min-h-[83vh] flex-col justify-end overflow-hidden">
+	<!-- Background Image -->
 	<div class="absolute inset-0">
 		<img
 			src="/images/hero-bg.jpg"
 			alt=""
 			class="h-full w-full object-cover"
-			style="opacity: 0.35;"
 		/>
-		<!-- Radial gradient for cinematic depth -->
-		<div class="absolute inset-0" style="background: radial-gradient(ellipse at 30% 50%, rgba(13,13,13,0.3) 0%, rgba(13,13,13,0.7) 50%, rgba(13,13,13,0.95) 100%);"></div>
-		<!-- Bottom fade -->
-		<div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(13,13,13,0.4) 0%, transparent 30%, transparent 60%, rgba(13,13,13,0.9) 100%);"></div>
+		<!-- Warm gradient overlay -->
+		<div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(40,35,28,0.3) 0%, rgba(40,35,28,0.1) 40%, rgba(40,35,28,0.55) 100%);"></div>
 	</div>
 
-	<div class="relative z-10 mx-auto w-full max-w-[1200px] px-6 pt-32 pb-24 lg:px-10">
-		<div class="max-w-[700px]">
-			<!-- Overline label -->
-			<p style="font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: #D4A853; margin-bottom: 24px;">
-				Your Journey Begins Here
-			</p>
-
-			<h1 style="font-family: 'Lora', serif; font-size: clamp(40px, 6vw, 72px); font-weight: 500; line-height: 1.08; color: #F5F0E8; margin: 0 0 28px; letter-spacing: -0.02em;">
-				Navigating the<br />
-				<span style="color: #D4A853; font-style: italic; font-weight: 400;">Path</span>
+	<div class="relative z-10 mx-auto w-full max-w-[1400px] px-6 pt-32 pb-12 lg:px-10">
+		<div class="max-w-[680px]">
+			<h1 class="hero-title font-display text-[44px] font-bold leading-[1.05] tracking-[-0.02em] text-white sm:text-[56px] lg:text-[68px]">
+				Navigating the
+				<span class="italic font-normal text-amber-200/90">Path</span>
 				to Islam
 			</h1>
 
-			<p style="font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.7; color: rgba(245,240,232,0.65); max-width: 540px; margin: 0 0 40px;">
+			<p class="hero-subtitle mt-6 max-w-[480px] text-[16px] leading-[1.65] text-white/80">
 				Empowering new and beginner Muslims with comprehensive education and support to navigate your journey and deepen your understanding and connection with faith.
 			</p>
 
-			<!-- CTAs -->
-			<div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 48px;">
-				<a href="/c/learn" class="bmc-btn-gold">
+			<div class="hero-cta mt-8 flex flex-wrap items-center gap-4">
+				<!-- White button -->
+				<a
+					href="/c/learn"
+					class="bm-btn-white"
+				style="padding: 14px 28px; font-weight: 600;"
+				>
 					Start Learning
-					<ArrowRight style="width: 16px; height: 16px;" />
+					<ArrowRight class="h-4 w-4" />
 				</a>
-				<a href="/c/learn" class="bmc-btn-outline">
+				<!-- Glass button -->
+				<a
+					href="/c/learn"
+					class="bm-btn-glass"
+				style="padding: 14px 28px; font-weight: 600;"
+				>
 					Explore Resources
 				</a>
 			</div>
+		</div>
 
-			<!-- Trust bar -->
-			<div style="display: flex; align-items: center; gap: 14px;">
-				<div style="display: flex;">
-					{#each ['#8B7355', '#6B8E6B', '#7A6B8E', '#8E6B6B'] as color, i}
-						<div style="width: 36px; height: 36px; border-radius: 999px; border: 2px solid #0D0D0D; background: {color}; margin-left: {i > 0 ? '-10px' : '0'}; position: relative; z-index: {4 - i};"></div>
+		<!-- Trust bar -->
+		<div class="hero-trust mt-8 flex items-center">
+			<div class="flex items-center gap-3">
+				<div class="flex -space-x-2">
+					{#each ['#7a8b6e', '#a08b6e', '#6e7a8b', '#8b6e7a'] as color}
+						<div class="h-9 w-9 rounded-full border-2 border-white/80" style="background: {color};"></div>
 					{/each}
 				</div>
-				<p style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(245,240,232,0.55);">
-					<span style="color: #F5F0E8; font-weight: 600;">Trusted by</span> 10,000+ learners
-				</p>
+				<div class="text-[13px] text-white">
+					<span class="font-semibold">Trusted by</span>
+					<span class="text-white/80">10,000+ learners</span>
+				</div>
 			</div>
 		</div>
 	</div>
+
 </section>
 
 <!-- ============================== -->
-<!-- 2. EXPLORE YOUR PATH           -->
+<!-- LEARN / CONVERT / SHOP         -->
 <!-- ============================== -->
-<section class="bmc-section" style="background: #0D0D0D;">
-	<div class="bmc-container">
-		<div style="text-align: center; margin-bottom: 48px;">
-			<p class="bmc-label" style="margin-bottom: 12px;">Explore</p>
-			<h2 class="bmc-section-heading">Choose Your Path</h2>
-		</div>
-
-		<div class="bmc-grid-explore">
-			<!-- Card: Learn -->
-			<a href="/c/learn" class="bmc-card" style="padding: 36px 28px; text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; min-height: 240px;">
+<section style="background: #faf9f5; padding: 24px 0;">
+	<div class="mx-auto max-w-[1400px] px-6 lg:px-10">
+		<div class="reveal-scale bm-grid-explore" style="background: #e3dacc; border-radius: 16px; padding: 28px 20px;">
+			<!-- Left: title + description + CTA -->
+			<div style="display: flex; flex-direction: column; justify-content: space-between; padding-right: 24px;">
 				<div>
-					<p class="bmc-label" style="margin-bottom: 16px;">Learn</p>
-					<h3 style="font-family: 'Lora', serif; font-size: 22px; font-weight: 400; color: #F5F0E8; line-height: 1.35; margin: 0;">
-						Explore articles, guides, and resources on Islamic faith and practice
-					</h3>
+					<h2 class="reveal" style="font-family: 'Source Serif 4', serif; font-size: 36px; font-weight: 400; color: #2a2018; margin: 0 0 16px; line-height: 1.15;">Explore your path</h2>
+					<p class="reveal stagger-1" style="font-family: 'DM Sans', sans-serif; font-size: 15px; color: #5a5248; line-height: 1.6; margin: 0;">
+						Discover Islam through courses, articles, and guides. Whether you're curious, converting, or deepening your practice — find resources made for you.
+					</p>
 				</div>
-				<div style="margin-top: 28px; text-align: right;">
-					<ArrowRight style="width: 20px; height: 20px; color: #D4A853;" />
+				<div class="reveal stagger-2" style="margin-top: 24px;">
+					<a href="/c/learn" class="bm-btn-outline" style="padding: 10px 24px;">
+						See all resources
+					</a>
+				</div>
+			</div>
+
+			<!-- Card: Learn -->
+			<a href="/c/learn" class="explore-card-hover reveal stagger-1" style="background: #f0eee6; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none;">
+				<div>
+					<p style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: #6a6258; margin: 0 0 8px; letter-spacing: 0.02em;">Learn</p>
+					<p style="font-family: 'Source Serif 4', serif; font-size: 24px; font-weight: 400; color: #2a2018; margin: 0; line-height: 1.2;">Explore articles, guides, and resources on Islamic faith and practice</p>
+				</div>
+				<div style="margin-top: 24px; text-align: right;">
+					<span class="explore-arrow" style="display: inline-block;"><ArrowRight class="h-5 w-5" style="color: #2a2018;" /></span>
 				</div>
 			</a>
 
 			<!-- Card: Convert -->
-			<a href="/c/convert" class="bmc-card" style="padding: 36px 28px; text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; min-height: 240px;">
+			<a href="/c/convert" class="explore-card-hover reveal stagger-2" style="background: #f0eee6; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none;">
 				<div>
-					<p class="bmc-label" style="margin-bottom: 16px;">Convert</p>
-					<h3 style="font-family: 'Lora', serif; font-size: 22px; font-weight: 400; color: #F5F0E8; line-height: 1.35; margin: 0;">
-						Take the next step on your journey with guidance and support
-					</h3>
+					<p style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: #6a6258; margin: 0 0 8px; letter-spacing: 0.02em;">Convert</p>
+					<p style="font-family: 'Source Serif 4', serif; font-size: 24px; font-weight: 400; color: #2a2018; margin: 0; line-height: 1.2;">Take the next step on your journey with guidance and support</p>
 				</div>
-				<div style="margin-top: 28px; text-align: right;">
-					<ArrowRight style="width: 20px; height: 20px; color: #D4A853;" />
+				<div style="margin-top: 24px; text-align: right;">
+					<span class="explore-arrow" style="display: inline-block;"><ArrowRight class="h-5 w-5" style="color: #2a2018;" /></span>
 				</div>
 			</a>
 
 			<!-- Card: Buy -->
-			<a href="/c/shop" class="bmc-card" style="padding: 36px 28px; text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; min-height: 240px;">
+			<a href="/c/shop" class="explore-card-hover reveal stagger-3" style="background: #f0eee6; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none;">
 				<div>
-					<p class="bmc-label" style="margin-bottom: 16px;">Buy</p>
-					<h3 style="font-family: 'Lora', serif; font-size: 22px; font-weight: 400; color: #F5F0E8; line-height: 1.35; margin: 0;">
-						Books, prayer cards, and resources for your journey
-					</h3>
+					<p style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: #6a6258; margin: 0 0 8px; letter-spacing: 0.02em;">Buy</p>
+					<p style="font-family: 'Source Serif 4', serif; font-size: 24px; font-weight: 400; color: #2a2018; margin: 0; line-height: 1.2;">Books, prayer cards, and resources for your journey</p>
 				</div>
-				<div style="margin-top: 28px; text-align: right;">
-					<ArrowRight style="width: 20px; height: 20px; color: #D4A853;" />
+				<div style="margin-top: 24px; text-align: right;">
+					<span class="explore-arrow" style="display: inline-block;"><ArrowRight class="h-5 w-5" style="color: #2a2018;" /></span>
 				</div>
 			</a>
 		</div>
@@ -131,163 +209,98 @@
 </section>
 
 <!-- ============================== -->
-<!-- 3. ARTICLES                    -->
+<!-- 4. FEATURED ARTICLES           -->
 <!-- ============================== -->
-<section class="bmc-section" style="background: #0D0D0D;">
-	<div class="bmc-container">
-		<div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;">
-			<div>
-				<p class="bmc-label" style="margin-bottom: 12px;">Resources</p>
-				<h2 class="bmc-section-heading">Latest Articles</h2>
-			</div>
-			<a href="/c/learn" style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #D4A853; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: opacity 0.2s;"
-				onmouseenter={(e) => { (e.currentTarget as HTMLElement).style.opacity = '0.7'; }}
-				onmouseleave={(e) => { (e.currentTarget as HTMLElement).style.opacity = '1'; }}
-			>
-				View all <ArrowRight style="width: 14px; height: 14px;" />
+<section class="bm-section-padding" style="background: #f4f1eb;">
+	<div class="mx-auto max-w-[1400px] px-6 lg:px-10">
+		<div class="reveal" style="display: flex; justify-content: space-between; align-items: end; margin-bottom: 32px;">
+			<h2 style="font-family: 'Source Serif 4', serif; font-size: clamp(26px, 3.8vw, 38px); line-height: 1.15; color: #2a2018; font-weight: 400; margin: 0;">
+				Latest Resources
+			</h2>
+			<a href="/c/learn" class="bm-view-all" style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: #2a2018; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+				View all <ArrowRight class="h-3.5 w-3.5" />
 			</a>
 		</div>
 
-		<div class="bmc-grid-articles">
+		<div class="bm-grid-3">
 			{#each [
-				{
-					title: 'Brief Overview of Islam',
-					category: 'Foundations',
-					time: '10 min',
-					img: 'https://www.beingmuslim.org/wp-content/uploads/2022/03/livingislamwithpurpose.png',
-					href: '/c/learn'
-				},
-				{
-					title: "A Beginner's Guide to Being a Muslim",
-					category: 'New Muslims',
-					time: '12 min',
-					img: 'https://www.beingmuslim.org/wp-content/uploads/2021/08/being-muslim-book.jpeg',
-					href: '/c/learn'
-				},
-				{
-					title: 'Islam and Other Faiths',
-					category: 'Belief',
-					time: '8 min',
-					img: 'https://www.beingmuslim.org/wp-content/uploads/2022/03/oneGodmanynames.jpeg',
-					href: '/c/learn'
-				}
-			] as article}
-				<a href={article.href} class="bmc-card group" style="text-decoration: none; overflow: hidden; display: flex; flex-direction: column;">
-					<!-- Image -->
-					<div style="position: relative; aspect-ratio: 16/10; overflow: hidden;">
-						<img
-							src={article.img}
-							alt={article.title}
-							class="transition-transform duration-500 group-hover:scale-105"
-							style="width: 100%; height: 100%; object-fit: cover; display: block;"
-						/>
-						<!-- Dark overlay on image -->
-						<div style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(13,13,13,0.6) 100%);"></div>
-						<!-- Category badge -->
-						<span class="bmc-badge" style="position: absolute; top: 16px; left: 16px;">
-							{article.category}
-						</span>
+				{ title: 'Brief Overview of Islam', category: 'Foundations', time: '10 min read', href: '/c/learn/brief-overview-of-islam', img: 'https://www.beingmuslim.org/wp-content/uploads/2022/03/livingislamwithpurpose.png' },
+				{ title: "A Beginner's Guide to Being a Muslim", category: 'New Muslims', time: '12 min read', href: '/c/learn/beginners-guide', img: 'https://www.beingmuslim.org/wp-content/uploads/2021/08/being-muslim-book.jpeg' },
+				{ title: 'Islam and Other Faiths', category: 'Belief', time: '8 min read', href: '/c/learn/islam-and-other-faiths', img: 'https://www.beingmuslim.org/wp-content/uploads/2022/03/oneGodmanynames.jpeg' }
+			] as article, i}
+				<a href={article.href} style="text-decoration: none; display: block;" class="bm-title-underline-parent card-lift reveal stagger-{i + 1}">
+					<div style="aspect-ratio: 4/3; background: #e2dcd2; border-radius: 12px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+						<img src={article.img} alt={article.title} style="width: 100%; height: 100%; object-fit: cover;" />
 					</div>
-					<!-- Content -->
-					<div style="padding: 24px;">
-						<h3 style="font-family: 'Lora', serif; font-size: 18px; font-weight: 400; color: #F5F0E8; line-height: 1.4; margin: 0 0 12px;">{article.title}</h3>
-						<p style="font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(245,240,232,0.4);">{article.time} read</p>
+					<h3 class="bm-title-underline" style="font-family: 'Source Serif 4', serif; font-size: 18px; font-weight: 400; color: #2a2018; margin: 0 0 8px; line-height: 1.3;">{article.title}</h3>
+					<div style="display: flex; align-items: center; gap: 12px;">
+						<span style="font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: #2a2018;">{article.category}</span>
+						<span style="font-family: 'DM Sans', sans-serif; font-size: 12px; color: #a09888;">{article.time}</span>
 					</div>
 				</a>
 			{/each}
 		</div>
 
-		<!-- Additional Resources button -->
-		<div style="text-align: center; margin-top: 48px;">
-			<a href="/c/learn" class="bmc-btn-outline">
-				Additional Resources <ArrowRight style="width: 14px; height: 14px;" />
+		<div class="reveal" style="text-align: center; margin-top: 32px;">
+			<a href="/c/learn" class="bm-btn-outline" style="padding: 10px 24px;">
+				Additional Resources <ArrowRight class="h-3.5 w-3.5" />
 			</a>
 		</div>
 	</div>
 </section>
 
 <!-- ============================== -->
-<!-- 4. PRODUCTS                    -->
+<!-- 5. PRODUCTS                    -->
 <!-- ============================== -->
-<section class="bmc-section" style="background: #0D0D0D; border-top: 1px solid rgba(255,255,255,0.04);">
-	<div class="bmc-container">
-		<div style="text-align: center; margin-bottom: 48px;">
-			<p class="bmc-label" style="margin-bottom: 12px;">Shop</p>
-			<h2 class="bmc-section-heading">Everything You Need to Begin</h2>
-		</div>
+<section class="bm-section-padding" style="background: #faf9f5;">
+	<div class="mx-auto max-w-[1400px] px-6 lg:px-10">
+		<h2 class="reveal" style="font-family: 'Source Serif 4', serif; font-size: clamp(26px, 3.8vw, 38px); line-height: 1.15; color: #2a2018; font-weight: 400; margin: 0 0 32px; text-align: center;">
+			Everything you need to begin
+		</h2>
 
-		<!-- Horizontal scroll carousel -->
-		<div class="bmc-hscroll">
+		<div style="display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 16px; -webkit-overflow-scrolling: touch;">
 			{#each [
-				{
-					title: 'Being Muslim: A Practical Guide',
-					price: '$14.95',
-					badge: 'Bestseller',
-					img: 'https://www.beingmuslim.org/wp-content/uploads/2021/08/being-muslim-book.jpeg',
-					href: '/c/shop'
-				},
-				{
-					title: 'The Complete Boxed Set',
-					price: '$85.00',
-					badge: 'Most Popular',
-					img: 'https://www.beingmuslim.org/wp-content/uploads/2021/08/the-boxed-set-900x1200.jpeg',
-					href: '/c/shop'
-				},
-				{
-					title: 'Prayer Reference Cards',
-					price: '$37.50',
-					badge: '',
-					img: 'https://www.beingmuslim.org/wp-content/uploads/2021/08/the-prayer-card-900x610.jpeg',
-					href: '/c/shop'
-				},
-				{
-					title: 'Digital Edition (eBook)',
-					price: '$9.00',
-					badge: '',
-					img: 'https://www.beingmuslim.org/wp-content/uploads/2021/08/BM-E-Book-900x1200.png',
-					href: '/c/shop'
-				}
-			] as product}
-				<a href={product.href} class="group" style="text-decoration: none; display: block; flex: 0 0 280px; scroll-snap-align: start;">
-					<!-- Product image -->
-					<div class="bmc-card" style="aspect-ratio: 1; overflow: hidden; margin-bottom: 16px; position: relative; border-radius: 8px;">
-						<img
-							src={product.img}
-							alt={product.title}
-							class="transition-transform duration-500 group-hover:scale-105"
-							style="width: 100%; height: 100%; object-fit: cover; display: block;"
-						/>
+				{ title: 'Being Muslim: A Practical Guide', price: '$14.95', badge: 'Bestseller', img: 'https://www.beingmuslim.org/wp-content/uploads/2021/08/being-muslim-book.jpeg', href: '/c/shop/book' },
+				{ title: 'The Complete Boxed Set', price: '$85.00', badge: 'Most Popular', img: 'https://www.beingmuslim.org/wp-content/uploads/2021/08/the-boxed-set-900x1200.jpeg', href: '/c/shop/boxed-set' },
+				{ title: 'Prayer Reference Cards', price: '$37.50', badge: '', img: 'https://www.beingmuslim.org/wp-content/uploads/2021/08/the-prayer-card-900x610.jpeg', href: '/c/shop/prayer-cards' },
+				{ title: 'Digital Edition (eBook)', price: '$9.00', badge: '', img: 'https://www.beingmuslim.org/wp-content/uploads/2021/08/BM-E-Book-900x1200.png', href: '/c/shop/ebook' }
+			] as product, i}
+				<a href={product.href} style="flex: 0 0 280px; scroll-snap-align: start; text-decoration: none; display: block;" class="bm-title-underline-parent product-card-hover reveal-right stagger-{i + 1}">
+					<div style="aspect-ratio: 1; background: #e2dcd2; border-radius: 12px; overflow: hidden; margin-bottom: 16px; position: relative;">
+						{#if product.img}
+							<img src={product.img} alt={product.title} style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+						{:else}
+							<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+								<BookOpen class="h-10 w-10" style="color: #c8c0b4;" />
+							</div>
+						{/if}
 						{#if product.badge}
-							<span class="bmc-badge" style="position: absolute; top: 12px; left: 12px;">
-								{product.badge}
-							</span>
+							<span style="position: absolute; top: 12px; left: 12px; font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 600; color: #2a2018; background: #fff; padding: 3px 10px; border-radius: 999px; z-index: 2;">{product.badge}</span>
 						{/if}
 					</div>
-					<!-- Product info -->
-					<h3 style="font-family: 'Lora', serif; font-size: 16px; font-weight: 400; color: #F5F0E8; margin: 0 0 8px; line-height: 1.35;">{product.title}</h3>
-					<span style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: #D4A853;">{product.price}</span>
+					<h3 class="bm-title-underline" style="font-family: 'Source Serif 4', serif; font-size: 16px; font-weight: 400; color: #2a2018; margin: 0 0 6px; line-height: 1.3;">{product.title}</h3>
+					<span style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: #2a2018;">{product.price}</span>
 				</a>
 			{/each}
 		</div>
 
-		<div style="text-align: center; margin-top: 48px;">
-			<a href="/c/shop" class="bmc-btn-outline">
-				See All Store Items <ArrowRight style="width: 14px; height: 14px;" />
+		<div class="reveal" style="text-align: center; margin-top: 32px;">
+			<a href="/c/shop" class="bm-btn-outline" style="padding: 10px 24px;">
+				See All Store Items <ArrowRight class="h-3.5 w-3.5" />
 			</a>
 		</div>
 	</div>
 </section>
 
 <!-- ============================== -->
-<!-- 5. FAQ                         -->
+<!-- 10. FAQ                        -->
 <!-- ============================== -->
-<section class="bmc-section" style="background: #0D0D0D; border-top: 1px solid rgba(255,255,255,0.04);">
-	<div class="bmc-container">
-		<div style="max-width: 800px; margin: 0 auto;">
-			<div style="text-align: center; margin-bottom: 48px;">
-				<p class="bmc-label" style="margin-bottom: 12px;">FAQ</p>
-				<h2 class="bmc-section-heading">Frequently Asked Questions</h2>
-			</div>
+<section class="bm-section-padding" style="background: #f4f1eb;">
+	<div class="mx-auto max-w-[1400px] px-6 lg:px-10">
+		<div style="max-width: 800px;">
+			<h2 class="reveal" style="font-family: 'Source Serif 4', serif; font-size: clamp(26px, 3.8vw, 38px); line-height: 1.15; color: #2a2018; font-weight: 400; margin: 0 0 32px;">
+				Frequently Asked Questions
+			</h2>
 
 			{#each [
 				{ q: 'My family is not supportive of my conversion. What do you advise?', a: 'This is a common challenge many new Muslims face. We recommend patience, maintaining loving relationships, and leading by positive example. Our community forum has many discussions from people who have navigated this successfully.' },
@@ -295,34 +308,30 @@
 				{ q: 'My previous faith was very dear to me. If I am now a Muslim, do I have to reject it entirely?', a: 'Islam acknowledges and respects the earlier prophets and scriptures. Many of the values you cherished in your previous faith are shared in Islam. Your journey enriches rather than erases your spiritual history.' },
 				{ q: 'My spouse or significant other is not a Muslim. How does becoming Muslim impact my marriage?', a: 'This is a nuanced topic that depends on your specific situation. We recommend speaking with a knowledgeable scholar who can provide guidance tailored to your circumstances. Reach out through our Contact page.' },
 				{ q: 'I just converted, what do I do next?', a: 'Congratulations and may God bless your path ahead! We have written an article that offers some advice and important first steps: "A Beginner\'s Guide to Being a Muslim." You can find it on our Learn page.' },
-				{ q: 'I believe Islam to be true and revealed by God, but I can\'t live up to its teachings. What should I do?', a: 'This is a feeling many Muslims experience, both new and lifelong. Islam teaches that God is the Most Merciful and that perfection is not expected. What matters is sincerity, effort, and turning back to God when you fall short. Start with what you can, and trust that growth comes with time and patience.' },
+				{ q: 'I believe Islam to be true and revealed by God, but I can\'t live up to its teachings. What should I do?', a: 'This feeling is more common than you might think. Islam teaches that God is the Most Merciful and that no one is expected to be perfect. Begin with what you can, be sincere in your intention, and trust that growth comes with time. The door to God is always open.' },
 				{ q: 'I want to convert, but I am finding it difficult to change my lifestyle including the way that I dress, what I eat/drink, relationships. Can I still become Muslim?', a: 'Absolutely. Islam teaches that faith is a journey, not a destination. You do not need to be perfect to begin. Start with the essentials and grow at your own pace — God is patient and merciful.' },
 				{ q: 'Do I need to change my name now that I have become Muslim?', a: 'No, changing your name is not required in Islam. Many Muslims keep their birth names. Some choose to adopt a new name as a personal expression of their new identity, but this is entirely optional.' }
 			] as faq, i}
-				<button
-					class="bmc-faq-btn"
-					onclick={() => toggleFaq(i)}
-				>
-					<span style="display: flex; align-items: flex-start; gap: 16px; flex: 1;">
-						<span style="font-family: 'Lora', serif; font-size: 20px; font-weight: 400; color: #D4A853; line-height: 1; flex-shrink: 0; margin-top: 2px;">?</span>
-						<span style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 500; color: #F5F0E8; line-height: 1.5; text-align: left;">{faq.q}</span>
-					</span>
-					<ChevronDown
-						class="flex-shrink-0 mt-1 transition-transform duration-200 {openFaq === i ? 'rotate-180' : ''}"
-						style="width: 16px; height: 16px; color: rgba(245,240,232,0.35);"
-					/>
-				</button>
-				{#if openFaq === i}
-					<p class="bmc-faq-answer">{faq.a}</p>
-				{/if}
+				<div class="reveal-left stagger-{Math.min(i + 1, 4)}">
+					<button
+						onclick={() => toggleFaq(i)}
+						class="faq-question-hover"
+						style="width: 100%; text-align: left; padding: 20px 0; border: none; border-top: 1px solid #e8e3da; background: none; cursor: pointer; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;"
+					>
+						<span style="font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; color: #2a2018; line-height: 1.4;">{faq.q}</span>
+						<ChevronDown class="h-4 w-4 flex-shrink-0 mt-1 faq-chevron {openFaq === i ? 'rotated' : ''}" style="color: #8a7e70;" />
+					</button>
+					<div class="faq-answer" class:open={openFaq === i} style="max-height: {openFaq === i ? '300px' : '0'};">
+						<p style="font-family: 'DM Sans', sans-serif; font-size: 14px; color: #8a7e70; line-height: 1.6; margin: 0 0 20px; padding-right: 40px;">{faq.a}</p>
+					</div>
+				</div>
 			{/each}
 
-			<!-- CTA buttons -->
-			<div style="margin-top: 40px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
-				<a href="/c/convert" class="bmc-btn-gold">
+			<div class="reveal" style="margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px;">
+				<a href="/c/convert" class="bm-btn-dark" style="padding: 10px 24px;">
 					Ready to Convert
 				</a>
-				<a href="/c/contact" class="bmc-btn-outline">
+				<a href="/c/contact" class="bm-btn-outline" style="padding: 10px 24px;">
 					Ask a Question
 				</a>
 			</div>
